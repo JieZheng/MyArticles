@@ -16,6 +16,8 @@ import au.com.myarticles.news.common.network.services.ServiceManager;
 import au.com.myarticles.news.di.modules.BusModule;
 import au.com.myarticles.news.di.modules.NetworkServicesModule;
 import au.com.myarticles.news.di.modules.SystemServicesModule;
+import au.com.myarticles.news.home.data.NewsDataLayer;
+import au.com.myarticles.news.home.network.NewsService;
 import dagger.Component;
 
 @Singleton
@@ -39,6 +41,10 @@ public interface AppComponent {
   Resources getResources();
 
   ServiceManager getServiceManager();
+
+  NewsService getNewsService();
+
+  NewsDataLayer getNewsDataLayer();
 
   final class Initialiser {
     public static AppComponent init(Application app) {

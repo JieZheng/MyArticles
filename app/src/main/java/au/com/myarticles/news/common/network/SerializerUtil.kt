@@ -1,5 +1,7 @@
 package au.com.myarticles.news.common.network
 
+import au.com.myarticles.news.home.network.NewsListResponse
+import au.com.myarticles.news.home.network.NewsListResponseDeserializer
 import com.google.gson.*
 import java.lang.reflect.Type
 import javax.inject.Inject
@@ -20,6 +22,7 @@ open class SerializerUtil {
   @Inject constructor() {
     gsonBuilder = GsonBuilder()
 
+    gsonBuilder.registerTypeAdapter(NewsListResponse::class.java, NewsListResponseDeserializer())
   }
 
   open fun <T> fromJson(json: String, clazz: Class<T>): T {
