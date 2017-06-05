@@ -1,3 +1,7 @@
 <resources>
+    <string name="suggested_news_header">Suggested Articles</string>
+    <string name="all_news_header">All Articles</string>
+
     <string name="no_articles">No Articles</string>
+    <string name="no_suggested_articles">No Suggested Articles</string>
 </resources>

@@ -2,11 +2,14 @@ package au.com.myarticles.news.home.domain
 
 import au.com.myarticles.news.R
 import au.com.myarticles.news.common.uiframework.Component
+import au.com.myarticles.news.common.uiframework.presentation.components.HeaderComponent
+import au.com.myarticles.news.common.uiframework.presentation.components.TwoColumnComponent
 import au.com.myarticles.news.common.uiframework.presentation.components.WarningComponent
 import au.com.myarticles.news.common.uiframework.support.ComponentProducer
 import au.com.myarticles.news.home.data.News
 import au.com.myarticles.news.home.data.NewsDataLayer
 import au.com.myarticles.news.home.domain.components.NewsComponent
+import au.com.myarticles.news.home.domain.components.SuggestedNewsComponent
 import au.com.myarticles.news.home.domain.events.NewsEvent
 import rx.Observable
 import rx.subjects.BehaviorSubject
@@ -17,6 +20,9 @@ open class NewsListViewModel @Inject constructor() : ComponentProducer<NewsListV
 
   class ComponentOrder {
     companion object {
+      val ORDER_SUGGESTED_NEWS_HEADER: Long = 10
+      val ORDER_SUGGESTED_NEWS: Long = 20
+      val ORDER_ALL_NEWS_HEADER: Long = 30
       val ORDER_ALL_NEWS: Long = 50
     }
   }
@@ -46,6 +52,14 @@ open class NewsListViewModel @Inject constructor() : ComponentProducer<NewsListV
     return allNewsBehaviour
   }
 
+  protected fun getSuggestedNews(news: List<News>): List<News> {
+    return suggestedCategories.map { category ->
+      news.find {
+        category in it.category
+      }
+    }.filterNotNull()
+  }
+
   override fun createDisplayElements(startingObject: NewsListOptions): Observable<List<Component>> {
     return getNews().doOnSubscribe {
       refreshAllNews()
@@ -58,11 +72,58 @@ open class NewsListViewModel @Inject constructor() : ComponentProducer<NewsListV
       }
       .map { newsList ->
         var components = mutableListOf<Component>()
+
+        if (startingObject.showSuggestedNews) {
+          components.add(getSuggestedNewsHeader())
+          components.add(getSuggestedNewsPanel(newsList))
+          components.add(getAllNewsHeader())
+        }
         components.addAll(getAllNewsComponents(newsList))
         components
       }
   }
 
+  protected fun getSuggestedNewsHeader(): Component {
+    return HeaderComponent(
+      title = getString(R.string.suggested_news_header),
+      sort = ComponentOrder.ORDER_SUGGESTED_NEWS_HEADER
+    )
+  }
+
+  protected fun getSuggestedNewsPanel(newsList: List<News>): Component {
+    return getSuggestedNews(newsList)
+      .map { news ->
+        SuggestedNewsComponent(
+          title = news.title,
+          abstract = news.abstract,
+          url = news.url,
+          imageUrl = news.imageUrl,
+          isStared = news.isStared,
+          clickEvent = NewsEvent.ClickNews(news.url),
+          longClickEvent = NewsEvent.LongClickNews(news)
+        )
+      }
+      .let {
+        if (it.isEmpty()) {
+          WarningComponent(
+            title = getString(R.string.no_suggested_articles),
+            sort = ComponentOrder.ORDER_SUGGESTED_NEWS
+          )
+        } else {
+          TwoColumnComponent(
+            items = it,
+            sort = ComponentOrder.ORDER_SUGGESTED_NEWS
+          )
+        }
+      }
+  }
+
+  protected fun getAllNewsHeader(): Component {
+    return HeaderComponent(
+      title = getString(R.string.all_news_header),
+      sort = ComponentOrder.ORDER_ALL_NEWS_HEADER
+    )
+  }
 
   protected fun getAllNewsComponents(newsList: List<News>): List<Component> {
     return newsList.map { news ->
