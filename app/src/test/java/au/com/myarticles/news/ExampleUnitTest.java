@@ -1,4 +1,4 @@
-package au.com.myarticles.myarticles;
+package au.com.myarticles.news;
 
 import org.junit.Test;
 

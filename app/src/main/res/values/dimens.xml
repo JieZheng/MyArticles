@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <!-- Raw dimens -->
+  <dimen name="raw.zero"  >0dp</dimen>
+  <dimen name="raw.unit_1_4"  >2dp</dimen>
+  <dimen name="raw.unit_1_2"  >4dp</dimen>
+  <dimen name="raw.unit_3_4"  >6dp</dimen>
+  <dimen name="raw.unit"      >8dp</dimen>
+  <dimen name="raw.unit_1_1_4">10dp</dimen>
+  <dimen name="raw.unit_1_1_2"  >12dp</dimen>
+  <dimen name="raw.unit_1_3_4"  >14dp</dimen>
+  <dimen name="raw.unit_2"    >16dp</dimen>
+  <dimen name="raw.unit_2_1_4">18dp</dimen>
+  <dimen name="raw.unit_2_1_2">20dp</dimen>
+  <dimen name="raw.unit_2_3_4">22dp</dimen>
+  <dimen name="raw.unit_3"    >24dp</dimen>
+  <dimen name="raw.unit_3_1_4">26dp</dimen>
+  <dimen name="raw.unit_3_1_2">28dp</dimen>
+  <dimen name="raw.unit_3_3_4">30dp</dimen>
+  <dimen name="raw.unit_4"    >32dp</dimen>
+  <dimen name="raw.unit_5"    >40dp</dimen>
+  <dimen name="raw.unit_6"    >48dp</dimen>
+  <dimen name="raw.unit_7"    >56dp</dimen>
+  <dimen name="raw.unit_8"    >64dp</dimen>
+  <dimen name="raw.unit_9"    >72dp</dimen>
+  <dimen name="raw.unit_10"   >80dp</dimen>
+  <dimen name="raw.unit_11"   >88dp</dimen>
+  <dimen name="raw.unit_14"   >112dp</dimen>
+  <dimen name="raw.unit_17"   >136dp</dimen>
+  <dimen name="raw.unit_20"   >160dp</dimen>
+  <dimen name="raw.unit_22"   >176dp</dimen>
+
+  <!-- Generic dimens -->
+  <dimen name="generic.spacing.outer">@dimen/raw.unit_2</dimen>
+  <dimen name="generic.spacing.outer.half">@dimen/raw.unit</dimen>
+  <dimen name="generic.spacing.margin.internal">@dimen/raw.unit</dimen>
+
+  <!-- common component -->
+  <dimen name="component.header.title.size">@dimen/raw.unit_2</dimen>
+
+  <!-- News -->
+  <dimen name="news.image.width">@dimen/raw.unit_7</dimen>
+  <dimen name="news.image.height">@dimen/raw.unit_11</dimen>
+  <dimen name="news.star.margin">@dimen/raw.unit_1_4</dimen>
+  <dimen name="suggested.news.image.height">@dimen/raw.unit_17</dimen>
+</resources>

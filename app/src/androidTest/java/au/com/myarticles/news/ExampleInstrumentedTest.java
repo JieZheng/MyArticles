@@ -1,4 +1,4 @@
-package au.com.myarticles.myarticles;
+package au.com.myarticles.news;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

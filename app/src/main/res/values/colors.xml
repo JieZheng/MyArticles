@@ -3,4 +3,15 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="raw.light.blue">#8de2e0</color>
+    <color name="raw.grey.128">#808080</color>
+    <color name="raw.yellow.article">#FFC900</color>
+
+    <!-- common components -->
+    <color name="component.header.text">@color/colorPrimary</color>
+    <color name="component.warning.text">@color/raw.grey.128</color>
+
+    <!-- news -->
+    <color name="news.image.background">@color/raw.grey.128</color>
 </resources>

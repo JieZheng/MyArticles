@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <integer name="animation_short">200</integer>
+  <integer name="animation_medium">500</integer>
+  <integer name="animation_long">1000</integer>
+
+  <integer name="animation_staggered_delay">100</integer>
+
+  <integer name="slide_up_translation">100</integer>
+
+  <integer name="card_elevation_animation_duration">@integer/animation_short</integer>
+  <integer name="card_appearance_animation_duration">@integer/animation_medium</integer>
+  <integer name="card_disappearance_animation_duration">@integer/animation_medium</integer>
+  <integer name="card_appearance_staggered_delay">@integer/animation_staggered_delay</integer>
+
+  <integer name="icon_disabled_alpha">180</integer>
+
+  <integer name="snackbar_long">5000</integer>
+  <integer name="snackbar_medium">3500</integer> <!-- tbc with Gabe -->
+  <integer name="snackbar_short">2000</integer> <!-- tbc with Gabe -->
+
+  <integer name="list_number_of_columns">1</integer>
+
+
+  <integer name="visiblity_visible">0</integer>
+  <integer name="visiblity_gone">2</integer>
+
+</resources>
