@@ -76,7 +76,7 @@ class HomeFragment : GenericComponentFragment<NewsListOptions>() {
   @Suppress("UNUSED")
   @Subscribe
   fun onClickSuggestedNewsHeader(e: NewsEvent.OpenSuggestedNewsPage) {
-    val intent = Intent(ctx, SuggestedNewsActivity::class.java)
+    val intent = Intent(ctx, BookmarkedNewsActivity::class.java)
     startActivity(intent)
   }
 }

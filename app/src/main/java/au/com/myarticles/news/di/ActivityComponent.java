@@ -8,8 +8,8 @@ import au.com.myarticles.news.di.scopes.ForActivity;
 import au.com.myarticles.news.home.domain.NewsListViewModel;
 import au.com.myarticles.news.home.presentation.HomeFragment;
 import au.com.myarticles.news.home.presentation.HomeActivity;
-import au.com.myarticles.news.home.presentation.SuggestedNewsActivity;
-import au.com.myarticles.news.home.presentation.SuggestedNewsFragment;
+import au.com.myarticles.news.home.presentation.BookmarkedNewsActivity;
+import au.com.myarticles.news.home.presentation.BookmarkedNewsFragment;
 import dagger.Component;
 
 @Component(dependencies = AppComponent.class, modules = {ActivityModule.class})
@@ -20,9 +20,9 @@ public interface ActivityComponent {
 
   void inject(HomeFragment fragment);
 
-  void inject(SuggestedNewsActivity activity);
+  void inject(BookmarkedNewsActivity activity);
 
-  void inject(SuggestedNewsFragment fragment);
+  void inject(BookmarkedNewsFragment fragment);
 
   Bus getEventBus();
 

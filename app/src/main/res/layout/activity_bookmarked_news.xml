@@ -13,7 +13,7 @@
         android:fitsSystemWindows="true">
 
         <include
-            layout="@layout/activity_suggested_news_content"
+            layout="@layout/activity_bookmarked_news_content"
             />
     </au.com.myarticles.news.common.uiframework.support.MySwipeRefreshLayout>
 

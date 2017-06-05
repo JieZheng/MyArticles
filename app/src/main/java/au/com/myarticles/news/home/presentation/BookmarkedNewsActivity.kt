@@ -6,11 +6,11 @@ import au.com.myarticles.news.R
 import au.com.myarticles.news.common.uiframework.presentation.BaseActivity
 import au.com.myarticles.news.di.ActivityComponent
 
-class SuggestedNewsActivity : BaseActivity() {
+class BookmarkedNewsActivity : BaseActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_suggested_news)
+    setContentView(R.layout.activity_bookmarked_news)
   }
 
   override fun onResume() {
@@ -27,7 +27,7 @@ class SuggestedNewsActivity : BaseActivity() {
   fun switchToHomeFragment() {
     supportFragmentManager
       .beginTransaction()
-      .replace(R.id.frameLayout_suggested_news, SuggestedNewsFragment.create(), SuggestedNewsFragment.Fragment_Suggested_News)
+      .replace(R.id.frameLayout_suggested_news, BookmarkedNewsFragment.create(), BookmarkedNewsFragment.Fragment_Bookmarked_News)
       .commit()
   }
 }

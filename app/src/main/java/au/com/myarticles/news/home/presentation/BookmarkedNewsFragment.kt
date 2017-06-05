@@ -10,21 +10,20 @@ import au.com.myarticles.news.home.domain.NewsListViewModel.NewsListOptions
 import au.com.myarticles.news.home.domain.NewsListViewModel.NewsDataSource
 import au.com.myarticles.news.home.domain.events.NewsEvent
 import com.squareup.otto.Subscribe
-import org.jetbrains.anko.support.v4.ctx
 import rx.Observable
 import javax.inject.Inject
 
-class SuggestedNewsFragment : GenericComponentFragment<NewsListOptions>() {
+class BookmarkedNewsFragment : GenericComponentFragment<NewsListOptions>() {
 
   protected lateinit var newsListViewModel : NewsListViewModel
     @Inject set
 
   companion object {
-    val TAG = SuggestedNewsFragment::class.java.simpleName
-    val Fragment_Suggested_News: String = "Fragment_Suggested_News"
+    val TAG = BookmarkedNewsFragment::class.java.simpleName
+    val Fragment_Bookmarked_News: String = "Fragment_Bookmarked_News"
 
-    fun create(): SuggestedNewsFragment {
-      val fragment = SuggestedNewsFragment()
+    fun create(): BookmarkedNewsFragment {
+      val fragment = BookmarkedNewsFragment()
       return fragment
     }
   }
