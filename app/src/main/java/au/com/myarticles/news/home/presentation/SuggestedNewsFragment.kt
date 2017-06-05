@@ -14,17 +14,17 @@ import org.jetbrains.anko.support.v4.ctx
 import rx.Observable
 import javax.inject.Inject
 
-class HomeFragment : GenericComponentFragment<NewsListOptions>() {
+class SuggestedNewsFragment : GenericComponentFragment<NewsListOptions>() {
 
   protected lateinit var newsListViewModel : NewsListViewModel
     @Inject set
 
   companion object {
-    val TAG = HomeFragment::class.java.simpleName
-    val Fragment_HOME: String = "Fragment_HOME"
+    val TAG = SuggestedNewsFragment::class.java.simpleName
+    val Fragment_Suggested_News: String = "Fragment_Suggested_News"
 
-    fun create(): HomeFragment {
-      val fragment = HomeFragment()
+    fun create(): SuggestedNewsFragment {
+      val fragment = SuggestedNewsFragment()
       return fragment
     }
   }
@@ -41,8 +41,8 @@ class HomeFragment : GenericComponentFragment<NewsListOptions>() {
 
   override fun getStartingObject(): Observable<NewsListOptions> {
     return Observable.just(NewsListOptions(
-      showSuggestedNews = true,
-      dataSource = NewsDataSource.NETWORK
+      showSuggestedNews = false,
+      dataSource = NewsDataSource.CACHE
     ))
   }
 
@@ -61,22 +61,4 @@ class HomeFragment : GenericComponentFragment<NewsListOptions>() {
     }
   }
 
-  @Suppress("UNUSED")
-  @Subscribe
-  fun onLongClickNews(e: NewsEvent.LongClickNews) {
-    e.news.let {
-      if (it.isStared) {
-        newsListViewModel.unbookmarkNews(it)
-      } else {
-        newsListViewModel.bookmarkNews(it)
-      }
-    }
-  }
-
-  @Suppress("UNUSED")
-  @Subscribe
-  fun onClickSuggestedNewsHeader(e: NewsEvent.OpenSuggestedNewsPage) {
-    val intent = Intent(ctx, SuggestedNewsActivity::class.java)
-    startActivity(intent)
-  }
 }

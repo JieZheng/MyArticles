@@ -14,6 +14,17 @@ open class News {
 
   constructor():super()
 
+  constructor(newsRealmObject: NewsRealmObject) {
+    title = newsRealmObject.title
+    abstract = newsRealmObject.abstract
+    imageUrl = newsRealmObject.imageUrl
+    url = newsRealmObject.url
+    newsRealmObject.category.map {
+      category.add(it.value)
+    }
+    isStared = true
+  }
+
   constructor(newsResponse: NewsResponse) {
     title = newsResponse.title
     abstract = newsResponse.abstract
