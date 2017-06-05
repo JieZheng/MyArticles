@@ -23,7 +23,7 @@ open class NewsListViewModel @Inject constructor() : ComponentProducer<NewsListV
       val ORDER_SUGGESTED_NEWS_HEADER: Long = 10
       val ORDER_SUGGESTED_NEWS: Long = 20
       val ORDER_ALL_NEWS_HEADER: Long = 30
-      val ORDER_ALL_NEWS: Long = 50
+      val ORDER_ALL_NEWS: Long = 40
     }
   }
 
@@ -40,16 +40,30 @@ open class NewsListViewModel @Inject constructor() : ComponentProducer<NewsListV
   protected lateinit var newsDataLayer: NewsDataLayer
     @Inject set
 
+  protected val bookmarkedNewsSubscription = CompositeSubscription()
   protected val allNewsSubscription = CompositeSubscription()
 
   private val refreshingBehaviour = BehaviorSubject.create<Boolean>(false)
 
   protected var allNewsBehaviour: BehaviorSubject<List<News>> = BehaviorSubject.create(listOf())
+  protected var bookmarkedNewsBehaviour: BehaviorSubject<List<News>> = BehaviorSubject.create(listOf())
 
   protected val suggestedCategories = listOf( News.AUSTRALIA, News.GREAT_BRITAIN, News.RUSSIA, News.CHINA, News.SOUTH_KOREA)
 
-  protected fun getNews(): Observable<List<News>> {
-    return allNewsBehaviour
+  protected fun getNews(newsListOptions: NewsListOptions): Observable<List<News>> {
+    return if (newsListOptions.dataSource != NewsDataSource.CACHE) {
+      Observable.combineLatest(
+        allNewsBehaviour,
+        bookmarkedNewsBehaviour,
+        { newsList, cachedNewsList ->
+        newsList.forEach { news ->
+          news.isStared = cachedNewsList.find { it.title == news.title } != null
+        }
+        newsList
+      })
+    } else {
+      bookmarkedNewsBehaviour
+    }
   }
 
   protected fun getSuggestedNews(news: List<News>): List<News> {
@@ -61,7 +75,8 @@ open class NewsListViewModel @Inject constructor() : ComponentProducer<NewsListV
   }
 
   override fun createDisplayElements(startingObject: NewsListOptions): Observable<List<Component>> {
-    return getNews().doOnSubscribe {
+    return getNews(startingObject).doOnSubscribe {
+      refreshBookmarkedNews()
       refreshAllNews()
     }
       .doOnCompleted {
@@ -86,6 +101,7 @@ open class NewsListViewModel @Inject constructor() : ComponentProducer<NewsListV
   protected fun getSuggestedNewsHeader(): Component {
     return HeaderComponent(
       title = getString(R.string.suggested_news_header),
+      clickEvent = NewsEvent.OpenSuggestedNewsPage,
       sort = ComponentOrder.ORDER_SUGGESTED_NEWS_HEADER
     )
   }
@@ -190,6 +206,22 @@ open class NewsListViewModel @Inject constructor() : ComponentProducer<NewsListV
 
   override fun isRefreshing(startingObject: NewsListOptions): Observable<Boolean> = refreshingBehaviour.asObservable()
 
+  fun refreshBookmarkedNews() {
+    bookmarkedNewsSubscription.clear()
+    bookmarkedNewsSubscription.add(
+      newsDataLayer.getCachedNewsList()
+        .subscribe(
+          {
+            bookmarkedNewsBehaviour.onNext(it)
+          },
+          {
+            logger.w(TAG_NAME, " error get bookmarked news", it)
+            emitError(it)
+          }
+        )
+    )
+  }
+
   fun refreshAllNews() {
     allNewsSubscription.clear()
     allNewsSubscription.add(
@@ -206,4 +238,21 @@ open class NewsListViewModel @Inject constructor() : ComponentProducer<NewsListV
     )
   }
 
+  fun bookmarkNews(news: News) {
+    newsDataLayer.saveNews(news)
+      .subscribe(
+        {
+          refreshBookmarkedNews()
+        },
+        {
+          logger.w(TAG_NAME, " error when bookmark news", it)
+          emitError(it)
+        }
+      )
+  }
+
+  fun unbookmarkNews(news: News) {
+    newsDataLayer.deleteNews(news)
+    refreshBookmarkedNews()
+  }
 }

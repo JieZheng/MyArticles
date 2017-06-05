@@ -24,6 +24,9 @@
             </intent-filter>
         </activity>
 
+        <activity android:name="au.com.myarticles.news.home.presentation.BookmarkedNewsActivity">
+        </activity>
+
     </application>
 
 </manifest>
