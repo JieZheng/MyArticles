@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Component">
+        <item name="android:paddingRight">@dimen/generic.spacing.outer</item>
+        <item name="android:paddingLeft">@dimen/generic.spacing.outer</item>
+    </style>
+
+    <style name="HeaderStyle">
+        <item name="android:textSize">@dimen/component.header.title.size</item>
+    </style>
+
+    <style name="HeaderText" parent="HeaderStyle">
+        <item name="android:textColor">@color/component.header.text</item>
+    </style>
+
+    <style name="WarningText" parent="HeaderText">
+        <item name="android:textColor">@color/component.warning.text</item>
+    </style>
+</resources>

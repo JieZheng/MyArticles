@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MyArticles</string>
+    <string name="general_error">Something went wrong. Please come back later.</string>
+    <string name="services_useragent">AndroidPhone</string>
 </resources>

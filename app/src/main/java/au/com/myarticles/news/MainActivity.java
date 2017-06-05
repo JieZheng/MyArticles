@@ -1,4 +1,4 @@
-package au.com.myarticles.myarticles;
+package au.com.myarticles.news;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
