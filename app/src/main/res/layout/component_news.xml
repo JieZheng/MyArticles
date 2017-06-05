@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<au.com.myarticles.news.common.uiframework.presentation.views.NewsView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/generic.spacing.outer"
+    android:longClickable="true"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/lin_layout_img_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <au.com.myarticles.news.common.uiframework.presentation.views.NormalImageView
+                android:id="@+id/img_news_image"
+                android:layout_width="@dimen/news.image.width"
+                android:layout_height="@dimen/news.image.height"
+                android:src="@drawable/img_default"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginRight="@dimen/generic.spacing.margin.internal"
+            android:layout_toLeftOf="@id/lin_layout_img_container"
+            android:layout_centerInParent="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txt_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:textStyle="bold"
+                tools:text="o-Pilot May  Have Practiced Fatal Dive, Report Says"/>
+
+            <TextView
+                android:id="@+id/txt_abstract"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/generic.spacing.margin.internal"
+                android:ellipsize="end"
+                android:gravity="start"
+                android:maxLines="2"
+                tools:text="Initial French findings show that Andreas Lubitz, the co-pilot suspected of deliberately flying a German airliner into the French Alps, repeatedly set the plane’s altitude to 100 feet during its outbound flight to Spain."/>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/img_star"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:tint="@color/raw.yellow.article"
+            android:layout_margin="@dimen/news.star.margin"
+            android:visibility="gone"
+            android:src="@drawable/ic_star"
+            />
+
+    </RelativeLayout>
+
+</au.com.myarticles.news.common.uiframework.presentation.views.NewsView>
